@@ -1,0 +1,51 @@
+#:kivy 1.0
+<AddFishScreen>:
+    name: 'addfish'
+    MDScreen:
+        MDBoxLayout:
+            orientation: "vertical"
+            spacing: 10
+            MDToolbar:
+                title: "Nouvelle adresse"
+                left_action_items: [["menu", lambda x: nav_drawer.set_state("open")]]
+                md_bg_color: 113/255,171/255,89/255,1
+            Widget:
+                size_hint_y: None
+                height: 60
+            MDTextField:
+                id: get_name
+                hint_text: 'Nom du poisson'
+                icon_right: 'fish'
+                size_hint_x: .5
+                icon_right_color: app.theme_cls.primary_color
+                pos_hint: {'center_x': .5}
+            MDTextField:
+                id: get_price
+                hint_text: 'Prix du poisson'
+                icon_right: 'fish'
+                size_hint_x: .5
+                icon_right_color: app.theme_cls.primary_color
+                pos_hint: {'center_x': .5}
+            MDRaisedButton:
+                text: 'Add fish'
+                pos_hint: {'center_x': 0.5}
+                md_bg_color: app.theme_cls.primary_dark
+                on_press: root.add_fish_price()
+            Widget:
+        MDNavigationDrawer:
+            id: nav_drawer
+            BoxLayout:
+                orientation:'vertical'
+                spacing: 20
+                padding: 10
+                ScrollView:
+                    MDList:
+                        OneLineListItem:
+                            text: 'Fish List'
+                            on_release: app.root.current = 'fishlist'
+                        OneLineListItem:
+                            text: 'Check price'
+                            on_release: app.root.current = 'menu'
+                        OneLineListItem:
+                            text: 'Add fish'
+                            on_release: app.root.current = 'addfish'
